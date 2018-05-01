@@ -30,17 +30,7 @@ public class Simplex {
         calculateX(false);
         calculateZ();
     }
-    private void calculateX(){
-        int j = 0;
-        for (int i = 0; i < model.getM() + model.getN(); i++) {
-            if(crutchCheck(i)){
-                model.setXByIndex(i, model.getBByIndex(j));
-                j++;
-            }
-            else
-                model.setXByIndex(i, 0);
-        }
-    }
+
     private void calculateX(boolean x){
         int basicIndex = 0;
         int i = 0;
@@ -150,20 +140,7 @@ public class Simplex {
             calculateNewSolution();
 
             model = calculateNewSolution();
-            roundModelDatas();
         }
-    }
-
-    private void roundModelDatas(){
-        for (int i = 0; i < model.getM()+1; i++) {
-            for (int j = 0; j < model.getM() + model.getN(); j++) {
-                model.setAByIndex(i, j, Math.round(model.getAByIndex(i, j) * 1000) / 1000);
-                //B[i][j] = Math.round(B[i][j] * 1000) / 1000.0;
-            }
-            model.setBByIndex(i, Math.round(model.getBByIndex(i) * 1000) / 1000);
-            model.setXByIndex(i, Math.round(model.getXByIndex(i) * 1000) / 1000);
-        }
-        model.setZ(Math.round(model.getZ() * 1000) / 1000);
     }
 
     protected void fillBasicVariables(){

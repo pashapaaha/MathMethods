@@ -4,7 +4,7 @@ import SimplexMethod.Model;
 
 public class Client {
     public static void main(String[] args) {
-        Model data = anotherInitialization();
+        Model data = anotherInitialization(); 
         DualSimplex method = new DualSimplex(data);
         if(method.equationHaveSolution())
             System.out.println("*********************** Решение найдено ***********************");
@@ -12,7 +12,7 @@ public class Client {
             System.out.println("/////////////////////// Решение не найдено ///////////////////////");
     }
 
-    public static Model variantInitialization(){
+    private static Model variantInitialization(){
         double[][] a = {
                 {3, 4, 2, 1, 0, 0},
                 {2, 5, 1, 0, 1, 0},
@@ -22,7 +22,7 @@ public class Client {
         double[] b = {9, 8, 7, 0};
         return new Model(a,b);
     }
-    public static Model anotherInitialization(){
+    private static Model anotherInitialization(){
         double[][] a = {
                 {1, 1, -1, 1, 0},
                 {-1, 5, -1, 0, 1},

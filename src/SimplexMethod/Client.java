@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        Model data = variantInitialization();
+        Model data = anotherInitialization();
         Simplex method = new Simplex(data);
         if(method.equationHaveSolution())
             System.out.println("*********************** Решение найдено ***********************");
@@ -14,7 +14,7 @@ public class Client {
 
     }
 
-    public static Model variantInitialization(){
+    private static Model variantInitialization(){
         double[][] a = {
                 {3, 4, 2, 1, 0, 0},
                 {2, 5, 1, 0, 1, 0},
@@ -24,7 +24,7 @@ public class Client {
         double[] b = {9, 8, 7, 0};
         return new Model(a,b);
     }
-    public static Model anotherInitialization(){
+    private static Model anotherInitialization(){
         double[][] a = {
                 {20,    9,      6,      1,      1,  0},
                 {10,    4,      2,      1,      0,  1},
@@ -34,7 +34,7 @@ public class Client {
         return new Model(a,b);
     }
 
-    public static Model selfInitialization(){
+    private static Model selfInitialization(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Введите количество неравенств в системе: ");
         int m = sc.nextInt();

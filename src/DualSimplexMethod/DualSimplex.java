@@ -11,7 +11,7 @@ public class DualSimplex extends Simplex{
         super(model);
     }
 
-    private boolean solvedBySimplex() {
+    private boolean isSolvedBySimplex() {
         boolean solved = true;
         for (int i = 0; i < model.getM(); i++) {
             solved &= model.getBByIndex(i) >= 0;
@@ -19,18 +19,18 @@ public class DualSimplex extends Simplex{
         return solved;
     }
 
-    private boolean solved(){
+    private boolean isSolved(){
         boolean solv = true;
         for (int i = 0; i < model.getM(); i++) {
             for (int j = 0; j < model.getM()+model.getN(); j++) {
-                solv &= model.getAByIndex(i, j) > 0;
+                solv &= model.getAByIndex(i, j) >= 0;
             }
             if(solv){
                 if(model.getBByIndex(i)  < 0) return false;
             }
             solv = true;
         }
-        return solv;
+        return true;
     }
 
     private void calculateDualRelations(){
@@ -76,11 +76,11 @@ public class DualSimplex extends Simplex{
         while(true){
             System.out.println("--------------------------------------------------");
             model.printModel();
-            if(solvedBySimplex()){
+            if(isSolvedBySimplex()){
                 Simplex simplex = new Simplex(this.model, this.basicVariables);
                 return simplex.equationHaveSolution();
             }
-            if(!solved()){
+            if(!isSolved()){
                 return false;
             }
             searchBasicLine();
