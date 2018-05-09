@@ -1,12 +1,16 @@
 package NorthWestCornerMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static SimplexMethod.Model.printMatrix;
 
 public class NorthWest {
     Model model;
     double[][] x;
+    public List<Coords> Basis = new ArrayList<Coords>();
 
-    NorthWest(Model model){
+    public NorthWest(Model model){
         this.model = model;
     }
 
@@ -37,11 +41,13 @@ public class NorthWest {
 
     private void excludeVendor(int i, int j){
         x[i][j] = model.getElemA(i);
+        Basis.add(new Coords(i, j));
         model.setElemA(0, i);
         model.setElemB(model.getElemB(j) - x[i][j], j);
     }
     private void excludeConsumer(int i, int j){
         x[i][j] = model.getElemB(j);
+        Basis.add(new Coords(i, j));
         model.setElemB(0, j);
         model.setElemA(model.getElemA(i) - x[i][j], i);
     }

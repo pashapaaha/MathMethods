@@ -25,9 +25,11 @@ public class Model {
         double sumB = arraySum(b);
         if(sumA > sumB){
             changeB(sumA - sumB);
+            System.out.println("+++");
         }
         else if(sumB > sumA){
             changeA(sumB - sumA);
+            System.out.println("+++");
         }
     }
 
